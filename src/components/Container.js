@@ -1,12 +1,12 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledContainer = styled.View`
   flex: 1;
   justify-content: flex-start;
   align-items: flex-start;
-  background-color: #eeeeee;
+  background-color: #f7f8fa;
   padding: 00px;
 `;
 
