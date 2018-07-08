@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Image, SectionList, StyleSheet, Text, View } from 'react-native';
-import Label from '../components/Label';
-import Section from '../components/Section';
+import { SectionList, StyleSheet, Text, View } from 'react-native';
+import ContactRow from '../components/ContactRow';
 import SendMenu from '../components/SendMenu';
 
 class SendScreen extends Component {
@@ -10,55 +9,13 @@ class SendScreen extends Component {
     tabBarHidden: true,
   };
 
-  closeModal = () =>
-    this.props.navigator.dismissModal({
-      animationType: 'slide-up',
-    });
-
   render() {
     return (
       <View style={styles.container}>
         <SendMenu navigator={this.props.navigator} />
         <SectionList
           renderItem={({ item, index, section }) => (
-            <Section
-              key={index}
-              style={{
-                flexDirection: 'row',
-                padding: 8,
-                alignItems: 'stretch',
-                width: '100%',
-              }}
-            >
-              {item.image ? (
-                <Image
-                  style={{
-                    width: 48,
-                    height: 48,
-                    resizeMode: 'contain',
-                    borderRadius: 24,
-                  }}
-                  source={{ uri: item.image }}
-                />
-              ) : (
-                <View
-                  style={{
-                    width: 40,
-                    height: 40,
-                    backgroundColor: item.color,
-                    borderRadius: 20,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Text style={{ color: '#fff', fontSize: 18, fontWeight: '600' }}>{item.initials}</Text>
-                </View>
-              )}
-              <View style={{ paddingLeft: 8, flexGrow: 1 }}>
-                <Label>{item.name}</Label>
-                <Text style={{ color: 'rgba(0,0,0,0.54)' }}>{item.text}</Text>
-              </View>
-            </Section>
+            <ContactRow key={index} index={index} image={item.image} initials={item.initials} name={item.name} text={item.text} color={item.color} />
           )}
           renderSectionHeader={({ section: { title } }) => <Text style={{ fontWeight: 'bold', color: 'rgba(0,0,0,0.54)', paddingLeft: 8 }}>{title}</Text>}
           sections={sections}
